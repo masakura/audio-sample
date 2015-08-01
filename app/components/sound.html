@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<script src="../scripts/sound.js"></script>
 
 <dom-module id="my-sample">
   <template>
@@ -11,6 +12,24 @@
       is: 'my-sample',
       down: function () {
         console.log('Down');
+      }
+    });
+  </script>
+</dom-module>
+
+<dom-module id="x-sound" >
+  <script>
+    Polymer({
+      is: 'x-sound',
+      ready: function () {
+        var sound = my.sound.createSound(new AudioContext());
+        this.channel_ = sound.createChannel(my.sound.presets.sine);
+      },
+      down: function () {
+        this.channel_.down();
+      },
+      up: function () {
+        this.channel_.up();
       }
     });
   </script>
