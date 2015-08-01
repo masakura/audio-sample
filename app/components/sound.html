@@ -1,10 +1,14 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
-<script>
-  Polymer({
-    is: 'my-sample',
-    ready: function () {
-      this.textContent = 'Hello';
-    }
-  });
-</script>
+<dom-module id="my-sample">
+  <template>
+    <div>
+      Hello, world!
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'my-sample'
+    });
+  </script>
+</dom-module>
