@@ -24,19 +24,53 @@ my.sound = my.sound || {};
     };
   };
 
-  var makePreset = function (context, type, envelope) {
-    var operator = createOperator(context, type, envelope);
-      return {
-        getConnectableOperators: function () {
-          return [operator];
-        },
-        getOperators: function () {
-          return [operator];
-        }
-      };
+  var createOperator = function (context, type, envelope) {
+    envelope = envelope || createEnvelope(context, {
+      attack: 0.1,
+      decay: 0.5,
+      sustain: 0.8,
+      release: 2
+    });
+
+    var oscillator = context.createOscillator();
+    var gain = context.createGain();
+    if (type) {
+      oscillator.type = type;
+    }
+    oscillator.connect(gain);
+    gain.gain.value = 0;
+
+    oscillator.start(0);
+
+    return {
+      connect: function (destination) {
+        gain.connect(destination);
+      },
+      getConnector: function () {
+        return oscillator.frequency;
+      },
+      down: function () {
+        envelope.down(gain);
+      },
+      up: function () {
+        envelope.up(gain);
+      }
+    };
   };
 
-  var presets = {
+  var makePreset = function (context, type, envelope) {
+    var operator = createOperator(context, type, envelope);
+    return {
+      getConnectableOperators: function () {
+        return [operator];
+      },
+      getOperators: function () {
+        return [operator];
+      }
+    };
+  };
+
+  my.sound.presets = {
     sine: function (context) {
       return makePreset(context, 'sine');
     },
@@ -114,48 +148,11 @@ my.sound = my.sound || {};
     };
   };
 
-  var createOperator = function (context, type, envelope) {
-    envelope = envelope || createEnvelope(context, {
-      attack: 0.1,
-      decay: 0.5,
-      sustain: 0.8,
-      release: 2
-    });
-
-    var oscillator  = context.createOscillator();
-    var gain = context.createGain();
-    if (type) {
-      oscillator.type = type;
-    }
-    oscillator.connect(gain);
-    gain.gain.value = 0;
-
-    oscillator.start(0);
-
-    return {
-      connect: function (destination) {
-        gain.connect(destination);
-      },
-      getConnector: function () {
-        return oscillator.frequency;
-      },
-      down: function () {
-        envelope.down(gain);
-      },
-      up: function () {
-        envelope.up(gain);
-      }
-    };
-  };
-
-  var createSound = function (context) {
+  my.sound.createSound = function (context) {
     return {
       createChannel: function (algorithm) {
         return createChannel(context, algorithm);
       }
     };
   };
-
-  my.sound.createSound = createSound;
-  my.sound.presets = presets;
 })();

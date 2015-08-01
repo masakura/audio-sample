@@ -39,6 +39,9 @@
       "es6": true,
       "jasmine": true
     },
+    "globals": {
+      "my": false
+    },
     "rules": {
       "quotes": [
         2,
