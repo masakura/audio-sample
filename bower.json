@@ -2,8 +2,7 @@
   "name": "audio-sample",
   "private": true,
   "dependencies": {
-    "bootstrap": "~3.3.5",
-    "polymer": "~1.0.8"
+    "bootstrap": "~3.3.5"
   },
   "overrides": {
     "bootstrap": {
@@ -16,6 +15,7 @@
     }
   },
   "devDependencies": {
-    "jasmine": "~2.3.4"
+    "jasmine": "~2.3.4",
+    "polymer": "~1.0.8"
   }
 }
