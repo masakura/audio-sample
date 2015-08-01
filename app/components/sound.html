@@ -19,11 +19,14 @@
 
 <dom-module id="x-sound" >
   <script>
+    var sound = my.sound.createSound(new AudioContext());
+
     Polymer({
       is: 'x-sound',
       ready: function () {
-        var sound = my.sound.createSound(new AudioContext());
-        this.channel_ = sound.createChannel(my.sound.presets.sine);
+        var preset = this.getAttribute('preset');
+        this.channel_ = sound.createChannel(my.sound.presets[preset]);
+        this.preset_ = preset;
       },
       down: function () {
         this.channel_.down();

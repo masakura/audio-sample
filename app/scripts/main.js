@@ -15,7 +15,9 @@
   };
 
   $(document).on('mousedown mouseup', '.play', function (e) {
-    var channel = channels[e.currentTarget.id];
+    var channel = document.querySelector('[preset="' +
+                                         e.currentTarget.id +
+                                         '"]');
 
     switch (e.type) {
     case 'mousedown':
