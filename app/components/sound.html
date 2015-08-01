@@ -8,7 +8,10 @@
   </template>
   <script>
     Polymer({
-      is: 'my-sample'
+      is: 'my-sample',
+      down: function () {
+        console.log('Down');
+      }
     });
   </script>
 </dom-module>
