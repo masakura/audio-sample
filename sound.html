@@ -1,0 +1,16 @@
+<link rel=import href=polymer.html> <script src=scripts/sound.8016d9b7.js></script> <dom-module id=x-sound> <script>var sound = my.sound.createSound(new AudioContext());
+
+    Polymer({
+      is: 'x-sound',
+      ready: function () {
+        var preset = this.getAttribute('preset');
+        this.channel_ = sound.createChannel(my.sound.presets[preset]);
+        this.preset_ = preset;
+      },
+      down: function () {
+        this.channel_.down();
+      },
+      up: function () {
+        this.channel_.up();
+      }
+    });</script> </dom-module>

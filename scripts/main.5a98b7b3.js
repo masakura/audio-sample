@@ -1,0 +1,1 @@
+!function(){"use strict";$(document).on("mousedown mouseup",".play",function(a){var b=document.querySelector('[preset="'+a.currentTarget.id+'"]');switch(a.type){case"mousedown":b.down();break;case"mouseup":b.up()}})}();
