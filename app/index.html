@@ -19,8 +19,13 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="components/sound.html">
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link rel="import" href="sound.html">
   </head>
   <body>
     <div class="container">
@@ -37,14 +42,6 @@
       <button id="sawtooth" class="btn btn-primary play" type="button">ノコギリ波</button>
       <button id="triangle" class="btn btn-primary play" type="button">三角波</button>
     </div>
-
-
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
 
     <!-- build:js(.) scripts/plugins.js -->
     <script src="/bower_components/bootstrap/js/affix.js"></script>
@@ -63,9 +60,7 @@
 
 
     <!-- build:js scripts/main.js -->
-    <script src="scripts/sound.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/temp.js"></script>
     <!-- endbuild -->
 
   </body>
