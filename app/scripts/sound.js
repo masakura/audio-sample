@@ -124,13 +124,13 @@ my.sound = my.sound || {};
 
   var createChannel = function (context, algorithm) {
     var operators = algorithm(context);
-    var vcf = context.createBiquadFilter();
+    var gain = context.createGain();
 
     operators.getConnectableOperators()
       .forEach(function (operator) {
-        operator.connect(vcf);
+        operator.connect(gain);
       });
-    vcf.connect(context.destination);
+    gain.connect(context.destination);
 
     return {
       down: function () {
